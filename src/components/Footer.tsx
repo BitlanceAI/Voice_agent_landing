@@ -1,6 +1,8 @@
 import Image from "next/image";
 
 export default function Footer() {
+  const auditUrl = "https://www.bitlancetechhub.com/apply/audit";
+
   return (
     <footer className="bg-white mt-0 px-4 py-16 border-t border-slate-200">
       <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-12">
@@ -22,7 +24,9 @@ export default function Footer() {
                 key={item.icon}
                 aria-label={item.label}
                 className="w-10 h-10 rounded-full glass flex items-center justify-center hover:bg-primary/10 transition-colors text-slate-700 hover:text-slate-900"
-                href="#book-demo"
+                href={auditUrl}
+                target="_blank"
+                rel="noreferrer"
               >
                 <span className="material-symbols-outlined text-sm">{item.icon}</span>
               </a>
@@ -33,7 +37,7 @@ export default function Footer() {
           <h4 className="text-slate-900 font-bold mb-6">Product</h4>
           <ul className="space-y-4 text-sm text-slate-600">
             {["Neural Engine", "Data Flow", "Security Kit", "Pricing"].map(item => (
-              <li key={item}><a className="hover:text-primary transition-colors" href="#">{item}</a></li>
+              <li key={item}><a className="hover:text-primary transition-colors" href={auditUrl} target="_blank" rel="noreferrer">{item}</a></li>
             ))}
           </ul>
         </div>
@@ -41,7 +45,7 @@ export default function Footer() {
           <h4 className="text-slate-900 font-bold mb-6">Company</h4>
           <ul className="space-y-4 text-sm text-slate-600">
             {["About Us", "Careers", "Blog", "Contact"].map(item => (
-              <li key={item}><a className="hover:text-primary transition-colors" href="#">{item}</a></li>
+              <li key={item}><a className="hover:text-primary transition-colors" href={auditUrl} target="_blank" rel="noreferrer">{item}</a></li>
             ))}
           </ul>
         </div>
@@ -49,7 +53,7 @@ export default function Footer() {
           <h4 className="text-slate-900 font-bold mb-6">Legal</h4>
           <ul className="space-y-4 text-sm text-slate-600">
             {["Privacy Policy", "Terms of Service", "Cookie Policy"].map(item => (
-              <li key={item}><a className="hover:text-primary transition-colors" href="#">{item}</a></li>
+              <li key={item}><a className="hover:text-primary transition-colors" href={auditUrl} target="_blank" rel="noreferrer">{item}</a></li>
             ))}
           </ul>
         </div>

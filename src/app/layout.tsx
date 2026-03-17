@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Public_Sans } from "next/font/google";
 import "./globals.css";
 import ChatWidget from "@/components/ChatWidget";
+import SkipToContent from "@/components/SkipToContent";
 
 const publicSans = Public_Sans({
   variable: "--font-public-sans",
@@ -55,12 +56,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${publicSans.variable} font-sans antialiased`}>
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:rounded-xl focus:bg-white/10 focus:px-4 focus:py-2 focus:text-white focus:ring-2 focus:ring-primary"
-        >
-          Skip to content
-        </a>
+        <SkipToContent />
         {children}
         <ChatWidget />
       </body>

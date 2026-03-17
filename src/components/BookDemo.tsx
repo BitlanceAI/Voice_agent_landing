@@ -4,6 +4,11 @@ import { motion } from "framer-motion";
 
 export default function BookDemo() {
   const auditUrl = "https://www.bitlancetechhub.com/apply/audit";
+  const scrollToId = (id: string) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   return (
     <section id="book-demo" className="py-20 px-4 bg-white">
@@ -76,12 +81,13 @@ export default function BookDemo() {
                 >
                   Get Free AI Audit
                 </motion.a>
-                <a
+                <button
+                  type="button"
                   className="flex-1 border border-slate-200 text-slate-900 text-sm font-black px-6 py-3.5 rounded-xl text-center hover:bg-slate-50 transition-colors"
-                  href="#faq"
+                  onClick={() => scrollToId("faq")}
                 >
                   View FAQs
-                </a>
+                </button>
               </div>
 
               <p className="text-xs text-slate-500 mt-4 leading-relaxed">

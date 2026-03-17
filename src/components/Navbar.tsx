@@ -7,6 +7,12 @@ export default function Navbar() {
   const auditUrl = "https://www.bitlancetechhub.com/apply/audit";
   const loginUrl = "https://www.bitlancetechhub.com/login";
 
+  const scrollToId = (id: string) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   return (
     <div className="fixed top-0 left-0 right-0 z-50 px-4 py-4">
       <motion.header
@@ -28,19 +34,20 @@ export default function Navbar() {
         </div>
         <nav className="hidden md:flex items-center gap-8">
           {[
-            { label: "Features", href: "#features" },
-            { label: "How it works", href: "#process" },
-            { label: "Integrations", href: "#integrations" },
-            { label: "Testimonials", href: "#testimonials" },
-            { label: "FAQ", href: "#faq" },
+            { label: "Features", id: "features" },
+            { label: "How it works", id: "process" },
+            { label: "Integrations", id: "integrations" },
+            { label: "Testimonials", id: "testimonials" },
+            { label: "FAQ", id: "faq" },
           ].map((item) => (
-            <a
-              key={item.href}
+            <button
+              key={item.id}
+              type="button"
               className="text-sm font-semibold text-slate-700 hover:text-primary transition-colors"
-              href={item.href}
+              onClick={() => scrollToId(item.id)}
             >
               {item.label}
-            </a>
+            </button>
           ))}
         </nav>
         <div className="flex items-center gap-3">

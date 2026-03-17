@@ -1,5 +1,12 @@
+"use client";
+
 export default function Hero() {
   const auditUrl = "https://www.bitlancetechhub.com/apply/audit";
+  const scrollToId = (id: string) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   return (
     <section className="relative bg-white pt-28 pb-16 px-4">
@@ -39,12 +46,13 @@ export default function Hero() {
               >
                 Get free audit
               </a>
-              <a
-                href="#process"
+              <button
+                type="button"
+                onClick={() => scrollToId("process")}
                 className="border border-slate-200 text-slate-900 text-sm md:text-base font-black px-7 py-3.5 rounded-xl text-center hover:bg-slate-50 transition-colors"
               >
                 See how it works
-              </a>
+              </button>
             </div>
           </div>
 
