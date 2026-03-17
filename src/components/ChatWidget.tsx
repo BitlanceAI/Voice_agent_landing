@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 declare global {
   interface Window {
@@ -10,6 +10,9 @@ declare global {
 }
 
 export default function ChatWidget() {
+  const [showCta, setShowCta] = useState(false);
+  const auditUrl = "https://www.bitlancetechhub.com/apply/audit";
+
   useEffect(() => {
     // Prevent double-initialization during Fast Refresh
     if (document.getElementById("bitlance-chat-widget-script")) return;
@@ -343,501 +346,38 @@ function handleLocalFallback(payload) {
     };
   }, []);
 
+  useEffect(() => {
+    const openTimer = window.setTimeout(() => setShowCta(true), 1200);
+    const autoHideTimer = window.setTimeout(() => setShowCta(false), 12000);
+    return () => {
+      window.clearTimeout(openTimer);
+      window.clearTimeout(autoHideTimer);
+    };
+  }, []);
+
   return (
     <>
-      <style jsx global>{`
-        :root {
-          --bitlance-brand: #22c7c8;
-          --bitlance-brand-dark: #0e8e90;
-          --bitlance-brand-glow: rgba(34, 199, 200, 0.35);
-          --bitlance-accent: rgba(34, 199, 200, 0.7);
-          --bitlance-bg: #0c0b14;
-          --bitlance-surface: #141220;
-          --bitlance-surface2: #1d1a2f;
-          --bitlance-border: rgba(255, 255, 255, 0.08);
-          --bitlance-text: #f0eef8;
-          --bitlance-muted: rgba(240, 238, 248, 0.55);
-          --bitlance-radius: 18px;
-          --bitlance-widget-w: 390px;
-        }
+      <div id="chat-cta" className={showCta ? "visible" : ""} role="status" aria-live="polite">
+        <div className="chat-cta-title">Book a Demo</div>
+        <div className="chat-cta-sub">Get a quick walkthrough and free audit recommendations.</div>
+        <div className="chat-cta-actions">
+          <a className="chat-cta-btn" href={auditUrl} target="_blank" rel="noreferrer">
+            Book a Demo
+          </a>
+          <button className="chat-cta-close" type="button" onClick={() => setShowCta(false)}>
+            Dismiss
+          </button>
+        </div>
+      </div>
 
-        /* ── BUBBLE ── */
-        #chat-bubble {
-          position: fixed;
-          bottom: 22px;
-          right: 22px;
-          width: 62px;
-          height: 62px;
-          border-radius: 50%;
-          background: linear-gradient(135deg, var(--bitlance-brand), var(--bitlance-brand-dark));
-          box-shadow: 0 8px 32px var(--bitlance-brand-glow), 0 2px 8px rgba(0, 0, 0, 0.18);
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          z-index: 9999;
-          border: none;
-          transition: transform 0.2s, box-shadow 0.2s;
-          animation: bitlanceBubbleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-        }
-        #chat-bubble:hover {
-          transform: scale(1.08);
-          box-shadow: 0 12px 40px var(--bitlance-brand-glow);
-        }
-        #chat-bubble svg {
-          transition: transform 0.3s, opacity 0.3s;
-        }
-        #chat-bubble.open .icon-chat {
-          opacity: 0;
-          transform: scale(0.5) rotate(90deg);
-        }
-        #chat-bubble.open .icon-close {
-          opacity: 1;
-          transform: scale(1) rotate(0deg);
-        }
-        #chat-bubble .icon-close {
-          position: absolute;
-          opacity: 0;
-          transform: scale(0.5) rotate(-90deg);
-        }
-        .notif-dot {
-          position: absolute;
-          top: 4px;
-          right: 4px;
-          width: 14px;
-          height: 14px;
-          background: rgba(34, 199, 200, 0.9);
-          border-radius: 50%;
-          border: 2px solid rgba(12, 11, 20, 0.9);
-          animation: bitlancePulse 1.8s infinite;
-        }
-        @keyframes bitlanceBubbleIn {
-          from {
-            transform: scale(0);
-            opacity: 0;
-          }
-          to {
-            transform: scale(1);
-            opacity: 1;
-          }
-        }
-        @keyframes bitlancePulse {
-          0%,
-          100% {
-            opacity: 1;
-            transform: scale(1);
-          }
-          50% {
-            opacity: 0.55;
-            transform: scale(1.35);
-          }
-        }
-
-        /* ── WIDGET ── */
-        #chat-widget {
-          position: fixed;
-          bottom: 104px;
-          right: 22px;
-          width: var(--bitlance-widget-w);
-          max-height: 640px;
-          background: var(--bitlance-surface);
-          border: 1px solid var(--bitlance-border);
-          border-radius: var(--bitlance-radius);
-          box-shadow: 0 24px 80px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(34, 199, 200, 0.12);
-          display: flex;
-          flex-direction: column;
-          z-index: 9998;
-          overflow: hidden;
-          transform: translateY(20px) scale(0.95);
-          opacity: 0;
-          pointer-events: none;
-          transition: transform 0.35s cubic-bezier(0.34, 1.3, 0.64, 1), opacity 0.25s ease;
-          color: var(--bitlance-text);
-          font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-        }
-        #chat-widget.open {
-          transform: translateY(0) scale(1);
-          opacity: 1;
-          pointer-events: all;
-        }
-
-        .widget-header {
-          background: linear-gradient(135deg, var(--bitlance-brand-dark) 0%, var(--bitlance-brand) 100%);
-          padding: 16px 18px;
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          flex-shrink: 0;
-          position: relative;
-          overflow: hidden;
-        }
-        .widget-header::after {
-          content: "";
-          position: absolute;
-          right: -20px;
-          top: -20px;
-          width: 100px;
-          height: 100px;
-          border-radius: 50%;
-          background: rgba(255, 255, 255, 0.08);
-        }
-        .header-avatar {
-          width: 40px;
-          height: 40px;
-          border-radius: 50%;
-          background: rgba(255, 255, 255, 0.16);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 1.15rem;
-          flex-shrink: 0;
-          border: 2px solid rgba(255, 255, 255, 0.22);
-        }
-        .header-info {
-          flex: 1;
-        }
-        .header-info strong {
-          font-size: 0.95rem;
-          font-weight: 800;
-          display: block;
-          color: #fff;
-        }
-        .header-info span {
-          font-size: 0.72rem;
-          color: rgba(255, 255, 255, 0.8);
-          display: flex;
-          align-items: center;
-          gap: 6px;
-        }
-        .online-dot {
-          width: 6px;
-          height: 6px;
-          background: rgba(255, 255, 255, 0.9);
-          border-radius: 50%;
-          animation: bitlancePulse 2s infinite;
-        }
-
-        .progress-bar {
-          height: 3px;
-          background: rgba(255, 255, 255, 0.1);
-          flex-shrink: 0;
-        }
-        .progress-fill {
-          height: 100%;
-          background: linear-gradient(90deg, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.9));
-          width: 0%;
-          transition: width 0.6s ease;
-        }
-
-        .widget-messages {
-          flex: 1;
-          overflow-y: auto;
-          padding: 18px 16px 10px;
-          display: flex;
-          flex-direction: column;
-          gap: 14px;
-        }
-
-        .msg {
-          display: flex;
-          gap: 8px;
-          align-items: flex-end;
-          animation: bitlanceMsgIn 0.35s cubic-bezier(0.34, 1.3, 0.64, 1) both;
-        }
-        @keyframes bitlanceMsgIn {
-          from {
-            opacity: 0;
-            transform: translateY(12px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .msg.bot {
-          flex-direction: row;
-        }
-        .msg.user {
-          flex-direction: row-reverse;
-        }
-        .msg-avatar {
-          width: 28px;
-          height: 28px;
-          border-radius: 50%;
-          background: linear-gradient(135deg, var(--bitlance-brand), var(--bitlance-brand-dark));
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 0.75rem;
-          flex-shrink: 0;
-        }
-        .msg-bubble {
-          max-width: 82%;
-          padding: 10px 14px;
-          border-radius: 16px;
-          font-size: 0.875rem;
-          line-height: 1.55;
-        }
-        .msg.bot .msg-bubble {
-          background: var(--bitlance-surface2);
-          border: 1px solid var(--bitlance-border);
-          border-bottom-left-radius: 4px;
-          color: var(--bitlance-text);
-        }
-        .msg.user .msg-bubble {
-          background: linear-gradient(135deg, var(--bitlance-brand), var(--bitlance-brand-dark));
-          border-bottom-right-radius: 4px;
-          color: #fff;
-        }
-        .msg-bubble strong {
-          font-weight: 700;
-        }
-
-        .typing-bubble {
-          display: flex;
-          gap: 8px;
-          align-items: flex-end;
-        }
-        .typing-dots {
-          background: var(--bitlance-surface2);
-          border: 1px solid var(--bitlance-border);
-          border-radius: 16px;
-          border-bottom-left-radius: 4px;
-          padding: 12px 16px;
-          display: flex;
-          gap: 5px;
-          align-items: center;
-        }
-        .typing-dots span {
-          width: 7px;
-          height: 7px;
-          border-radius: 50%;
-          background: rgba(240, 238, 248, 0.55);
-          animation: bitlanceBounce 1.2s infinite;
-        }
-        .typing-dots span:nth-child(2) {
-          animation-delay: 0.15s;
-        }
-        .typing-dots span:nth-child(3) {
-          animation-delay: 0.3s;
-        }
-        @keyframes bitlanceBounce {
-          0%,
-          60%,
-          100% {
-            transform: translateY(0);
-          }
-          30% {
-            transform: translateY(-6px);
-          }
-        }
-
-        .multi-select-wrap {
-          display: flex;
-          flex-direction: column;
-          gap: 6px;
-          animation: bitlanceMsgIn 0.4s 0.1s cubic-bezier(0.34, 1.3, 0.64, 1) both;
-        }
-
-        .btn-option {
-          background: transparent;
-          border: 1px solid rgba(34, 199, 200, 0.35);
-          color: rgba(240, 238, 248, 0.85);
-          font-size: 0.83rem;
-          padding: 9px 14px;
-          border-radius: 10px;
-          cursor: pointer;
-          text-align: left;
-          transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.12s;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 8px;
-          position: relative;
-        }
-        .btn-option:hover {
-          background: rgba(34, 199, 200, 0.14);
-          border-color: rgba(34, 199, 200, 0.7);
-          color: #fff;
-        }
-        .btn-option.single:hover {
-          transform: translateX(3px);
-        }
-        .btn-option.single:active {
-          transform: scale(0.97);
-        }
-        .btn-option.single.selected {
-          background: rgba(34, 199, 200, 0.18);
-          border-color: rgba(34, 199, 200, 0.85);
-          color: #fff;
-          pointer-events: none;
-        }
-
-        .btn-option.multi {
-          padding-right: 40px;
-        }
-        .btn-option.multi::after {
-          content: "";
-          position: absolute;
-          right: 12px;
-          top: 50%;
-          transform: translateY(-50%);
-          width: 18px;
-          height: 18px;
-          border: 2px solid rgba(34, 199, 200, 0.5);
-          border-radius: 5px;
-          background: transparent;
-          transition: background 0.15s, border-color 0.15s;
-        }
-        .btn-option.multi.checked {
-          background: rgba(34, 199, 200, 0.18);
-          border-color: rgba(34, 199, 200, 0.85);
-          color: #fff;
-        }
-        .btn-option.multi.checked::after {
-          background: rgba(34, 199, 200, 0.85);
-          border-color: rgba(34, 199, 200, 0.85);
-          background-image: url("data:image/svg+xml,%3Csvg width='12' height='9' viewBox='0 0 12 9' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4L4.5 7.5L11 1' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-          background-repeat: no-repeat;
-          background-position: center;
-        }
-
-        .confirm-btn {
-          margin-top: 4px;
-          background: linear-gradient(135deg, var(--bitlance-brand), var(--bitlance-brand-dark));
-          color: #fff;
-          font-size: 0.85rem;
-          font-weight: 800;
-          padding: 11px 18px;
-          border: none;
-          border-radius: 10px;
-          cursor: pointer;
-          width: 100%;
-          transition: opacity 0.2s, transform 0.15s;
-          letter-spacing: 0.02em;
-          opacity: 0.4;
-          pointer-events: none;
-        }
-        .confirm-btn.active {
-          opacity: 1;
-          pointer-events: all;
-        }
-        .confirm-btn.active:hover {
-          transform: translateY(-1px);
-          opacity: 0.92;
-        }
-
-        .contact-form {
-          background: var(--bitlance-surface2);
-          border: 1px solid var(--bitlance-border);
-          border-radius: 14px;
-          padding: 14px;
-          display: flex;
-          flex-direction: column;
-          gap: 9px;
-          animation: bitlanceMsgIn 0.4s cubic-bezier(0.34, 1.3, 0.64, 1) both;
-        }
-        .contact-form input {
-          background: rgba(12, 11, 20, 0.85);
-          border: 1px solid var(--bitlance-border);
-          color: var(--bitlance-text);
-          font-size: 0.85rem;
-          padding: 9px 12px;
-          border-radius: 9px;
-          outline: none;
-          transition: border-color 0.2s;
-          width: 100%;
-        }
-        .contact-form input:focus {
-          border-color: rgba(34, 199, 200, 0.8);
-        }
-        .contact-form input::placeholder {
-          color: rgba(240, 238, 248, 0.45);
-        }
-        .contact-form button {
-          background: linear-gradient(135deg, var(--bitlance-brand), var(--bitlance-brand-dark));
-          color: #fff;
-          font-size: 0.85rem;
-          font-weight: 800;
-          padding: 10px;
-          border: none;
-          border-radius: 9px;
-          cursor: pointer;
-          transition: opacity 0.2s, transform 0.15s;
-          letter-spacing: 0.02em;
-        }
-        .contact-form button:hover {
-          opacity: 0.9;
-          transform: translateY(-1px);
-        }
-
-        .widget-footer {
-          padding: 12px 14px;
-          border-top: 1px solid var(--bitlance-border);
-          background: rgba(20, 18, 32, 0.9);
-          flex-shrink: 0;
-          display: flex;
-          align-items: center;
-          gap: 8px;
-        }
-        .footer-input {
-          flex: 1;
-          background: var(--bitlance-surface2);
-          border: 1px solid var(--bitlance-border);
-          border-radius: 999px;
-          padding: 9px 16px;
-          color: var(--bitlance-text);
-          font-size: 0.85rem;
-          outline: none;
-          transition: border-color 0.2s;
-        }
-        .footer-input:focus {
-          border-color: rgba(34, 199, 200, 0.8);
-        }
-        .footer-input::placeholder {
-          color: rgba(240, 238, 248, 0.5);
-        }
-        .footer-send {
-          width: 38px;
-          height: 38px;
-          border-radius: 50%;
-          background: var(--bitlance-brand);
-          border: none;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: background 0.2s, transform 0.15s;
-          flex-shrink: 0;
-        }
-        .footer-send:hover {
-          background: var(--bitlance-brand-dark);
-          transform: scale(1.05);
-        }
-        .powered-by {
-          text-align: center;
-          font-size: 0.68rem;
-          color: rgba(240, 238, 248, 0.5);
-          padding: 5px 0 8px;
-          opacity: 0.75;
-          letter-spacing: 0.03em;
-          background: rgba(20, 18, 32, 0.9);
-        }
-
-        @media (max-width: 440px) {
-          #chat-widget {
-            width: calc(100vw - 24px);
-            right: 12px;
-            bottom: 96px;
-          }
-          #chat-bubble {
-            right: 16px;
-            bottom: 20px;
-          }
-        }
-      `}</style>
-
-      <button id="chat-bubble" onClick={() => window.toggleWidget?.()} aria-label="Open chat">
+      <button
+        id="chat-bubble"
+        onClick={() => {
+          setShowCta(false);
+          window.toggleWidget?.();
+        }}
+        aria-label="Open chat"
+      >
         <div className="notif-dot" />
         <svg
           className="icon-chat"
