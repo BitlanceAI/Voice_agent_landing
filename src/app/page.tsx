@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
@@ -9,8 +12,11 @@ import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import BookDemo from "@/components/BookDemo";
 import { ElegantShape } from "@/components/ui/shape-landing-hero";
+import VideoModal from "@/components/VideoModal";
 
 export default function Home() {
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+
   return (
     <div
       id="main-content"
@@ -69,7 +75,7 @@ export default function Home() {
       
       {/* Content Wrapper */}
       <div className="relative z-10 flex flex-col w-full">
-        <Hero />
+        <Hero onWatchOverview={() => setIsVideoModalOpen(true)} />
         <Features />
         <Process />
         <Capabilities />
@@ -79,6 +85,12 @@ export default function Home() {
         <FAQ />
         <Footer />
       </div>
+
+      <VideoModal
+        isOpen={isVideoModalOpen}
+        onClose={() => setIsVideoModalOpen(false)}
+        videoSrc="/why_bitlance.mp4"
+      />
     </div>
   );
 }

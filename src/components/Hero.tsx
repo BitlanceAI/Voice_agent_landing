@@ -1,12 +1,13 @@
 "use client";
 
-export default function Hero() {
+import { Play } from "lucide-react";
+
+interface HeroProps {
+  onWatchOverview: () => void;
+}
+
+export default function Hero({ onWatchOverview }: HeroProps) {
   const auditUrl = "https://www.bitlancetechhub.com/apply/audit";
-  const scrollToId = (id: string) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
 
   return (
     <section className="relative bg-transparent pt-28 pb-16 px-4">
@@ -48,16 +49,19 @@ export default function Hero() {
               </a>
               <button
                 type="button"
-                onClick={() => scrollToId("process")}
-                className="border border-white/10 bg-white/5 text-white text-sm md:text-base font-bold px-7 py-3.5 rounded-xl text-center hover:bg-white/10 transition-colors"
+                onClick={onWatchOverview}
+                className="group border border-white/10 bg-white/5 text-white text-sm md:text-base font-bold px-7 py-3.5 rounded-xl text-center hover:bg-white/10 transition-colors flex items-center justify-center gap-2"
               >
-                See how it works
+                <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center group-hover:bg-primary/30 transition-colors">
+                  <Play size={14} className="text-primary fill-primary" />
+                </div>
+                Watch Overview
               </button>
             </div>
           </div>
 
           <div className="order-1 lg:order-2">
-            <div className="glass rounded-[2rem] overflow-hidden border border-slate-200 shadow-sm">
+            <div className="glass rounded-[2rem] overflow-hidden border border-white/10 shadow-sm">
               <video
                 className="w-full aspect-video object-cover"
                 src="/video/WhatsApp Video 2026-03-12 at 3.59.30 PM.mp4"
