@@ -41,13 +41,13 @@ export default function Features() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section id="features" className="py-24 px-4 bg-white">
+    <section id="features" className="py-24 px-4 bg-transparent">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-end gap-6 mb-14">
           <div className="max-w-2xl">
             <h2 className="text-primary font-bold tracking-widest uppercase text-sm mb-4">The Advantage</h2>
-            <h3 className="text-4xl md:text-5xl font-black text-slate-900 mb-6">Why Businesses Need an AI Voice Agent</h3>
-            <p className="text-slate-600 text-lg">Many businesses lose customers because calls are missed or responses are delayed. Our AI solves these challenges instantly.</p>
+            <h3 className="text-4xl md:text-5xl font-black text-white mb-6">Why Businesses Need an AI Voice Agent</h3>
+            <p className="text-white/60 text-lg">Many businesses lose customers because calls are missed or responses are delayed. Our AI solves these challenges instantly.</p>
           </div>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
@@ -65,7 +65,7 @@ export default function Features() {
               </div>
 
               <div className="relative">
-                <div className="w-14 h-14 rounded-2xl bg-white border border-slate-200 flex items-center justify-center mb-6 mx-auto group-hover:bg-primary/10 group-hover:border-primary/25 transition-colors">
+                <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 mx-auto group-hover:bg-primary/10 group-hover:border-primary/25 transition-colors">
                   <feature.Icon
                     aria-hidden="true"
                     className="text-primary"
@@ -73,10 +73,10 @@ export default function Features() {
                     strokeWidth={2.2}
                   />
                 </div>
-                <h4 className="text-center text-lg font-black mb-2 text-slate-900 leading-tight tracking-tight">
+                <h4 className="text-center text-lg font-black mb-2 text-white leading-tight tracking-tight">
                   {feature.title}
                 </h4>
-                <p className="text-center text-slate-600 text-sm leading-relaxed">
+                <p className="text-center text-white/60 text-sm leading-relaxed">
                   {feature.description}
                 </p>
               </div>

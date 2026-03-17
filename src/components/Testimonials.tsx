@@ -43,9 +43,9 @@ export default function Testimonials() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section id="testimonials" className="py-20 overflow-hidden bg-white">
+    <section id="testimonials" className="py-20 overflow-hidden bg-transparent">
       <div className="max-w-7xl mx-auto px-4 mb-16">
-        <h2 className="text-center text-3xl font-black text-slate-900 tracking-tight">
+        <h2 className="text-center text-3xl font-black text-white tracking-tight">
           Trusted by Global Innovators
         </h2>
       </div>
@@ -69,9 +69,9 @@ export default function Testimonials() {
               key={`${t.author}-${index}`}
               className="glass p-8 rounded-3xl relative w-[400px] whitespace-normal flex-shrink-0"
             >
-              <p className="text-slate-700 italic mb-8 leading-relaxed">"{t.quote}"</p>
+              <p className="text-white/70 italic mb-8 leading-relaxed">"{t.quote}"</p>
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-white overflow-hidden ring-2 ring-primary/20 border border-slate-200">
+                <div className="w-12 h-12 rounded-full bg-white/10 overflow-hidden ring-2 ring-primary/20 border border-white/10">
                   <Image
                     className="w-full h-full object-cover"
                     alt={t.author}
@@ -81,8 +81,8 @@ export default function Testimonials() {
                   />
                 </div>
                 <div>
-                  <p className="font-black text-slate-900">{t.author}</p>
-                  <p className="text-xs text-slate-500 font-bold uppercase tracking-widest">{t.role}</p>
+                  <p className="font-black text-white">{t.author}</p>
+                  <p className="text-xs text-white/40 font-bold uppercase tracking-widest">{t.role}</p>
                 </div>
               </div>
             </div>
@@ -90,8 +90,8 @@ export default function Testimonials() {
         </motion.div>
         
         {/* Faders for smooth transitions at edges */}
-        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white to-transparent z-10"></div>
-        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white to-transparent z-10"></div>
+        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#030303] to-transparent z-10"></div>
+        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#030303] to-transparent z-10"></div>
       </div>
     </section>
   );

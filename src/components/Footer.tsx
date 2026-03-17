@@ -1,71 +1,121 @@
-import Image from "next/image";
+"use client";
 
-export default function Footer() {
-  const auditUrl = "https://www.bitlancetechhub.com/apply/audit";
+import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { Mail, Phone, MapPin, Linkedin } from 'lucide-react';
 
-  return (
-    <footer className="bg-white mt-0 px-4 py-16 border-t border-slate-200">
-      <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-12">
-        <div className="col-span-2 lg:col-span-2">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="h-8">
-              <Image src="/logo%20(1).jpg" alt="Bitlance AI" width={140} height={28} className="h-8 w-auto" />
+const Footer = () => {
+    const mainWebsite = "https://www.bitlancetechhub.com";
+    
+    return (
+        <footer className="bg-transparent text-white pt-24 pb-12 border-t border-white/5">
+            <div className="max-w-7xl mx-auto px-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-12 mb-16">
+                    {/* Brand Column - Left */}
+                    <div className="lg:col-span-1">
+                        <Link href="/" className="inline-block mb-8">
+                            <Image 
+                                src="/logo.webp" 
+                                alt="Bitlance.ai" 
+                                width={140} 
+                                height={32} 
+                                className="h-8 w-auto object-contain mix-blend-lighten" 
+                            />
+                        </Link>
+                        <p className="text-white/50 text-sm leading-relaxed mb-8 max-w-xs">
+                            Empowering businesses with intelligent automation. 24/7 
+                            engagement, instant qualification, and seamless scheduling.
+                        </p>
+                        <div className="flex gap-4">
+                            <SocialIcon icon={<Linkedin size={18} />} href="https://www.linkedin.com/company/bitlance-tech-hub-pvt-ltd/" />
+                        </div>
+                    </div>
+
+                    {/* Company Links - Center */}
+                    <div className="lg:col-start-2 lg:justify-self-center">
+                        <h3 className="text-base font-bold mb-8 text-white">Company</h3>
+                        <ul className="space-y-4">
+                            <FooterLink href={`${mainWebsite}/blogs`} label="Blog" />
+                            <FooterLink href={`${mainWebsite}/privacy`} label="Privacy Policy" />
+                            <FooterLink href={`${mainWebsite}/terms`} label="Terms of Service" />
+                        </ul>
+                    </div>
+
+                    {/* Contact Info - Right */}
+                    <div className="lg:col-span-2 lg:flex lg:flex-col lg:items-end">
+                        <div className="w-full lg:max-w-md">
+                            <h3 className="text-base font-bold mb-8 text-white">Contact</h3>
+                            <ul className="space-y-6">
+                            <ContactItem
+                                icon={<MapPin size={18} />}
+                                text="Blue Ridge Town Pune, Phase 1, Hinjawadi Rajiv Gandhi Infotech Park, Hinjawadi, Pune, Pimpri-Chinchwad, Maharashtra 411057"
+                            />
+                            <ContactItem
+                                icon={<Mail size={18} />}
+                                text="ceo@bitlancetechhub.com"
+                                href="mailto:ceo@bitlancetechhub.com"
+                            />
+                            <ContactItem
+                                icon={<Phone size={18} />}
+                                text="+91 7391025059"
+                                href="tel:+917391025059"
+                            />
+                        </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="border-t border-white/5 pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
+                    <p className="text-white/30 text-xs">
+                        © {new Date().getFullYear()} Bitlance. All rights reserved.
+                    </p>
+                    <div className="flex gap-8 text-xs text-white/30">
+                        <a href={`${mainWebsite}/privacy-policy`} className="hover:text-white transition-colors">Privacy Policy</a>
+                        <a href={`${mainWebsite}/terms-policy`} className="hover:text-white transition-colors">Terms of Service</a>
+                    </div>
+                </div>
             </div>
-            
-          </div>
-          <p className="text-slate-600 max-w-sm mb-8">Empowering the next generation of enterprises with cognitive automation and high-fidelity intelligence systems.</p>
-          <div className="flex gap-4">
-            {[
-              { icon: "public", label: "Website" },
-              { icon: "share", label: "Share" },
-              { icon: "mail", label: "Email" },
-            ].map((item) => (
-              <a
-                key={item.icon}
-                aria-label={item.label}
-                className="w-10 h-10 rounded-full glass flex items-center justify-center hover:bg-primary/10 transition-colors text-slate-700 hover:text-slate-900"
-                href={auditUrl}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <span className="material-symbols-outlined text-sm">{item.icon}</span>
-              </a>
-            ))}
-          </div>
+        </footer>
+    );
+};
+
+const SocialIcon = ({ icon, href }: { icon: React.ReactNode, href?: string }) => (
+    <a 
+        href={href || "#"} 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:bg-primary hover:text-white transition-all transform hover:-translate-y-1"
+    >
+        {icon}
+    </a>
+);
+
+const FooterLink = ({ href, label }: { href: string, label: string }) => (
+    <li>
+        <a href={href} className="text-white/50 hover:text-white transition-colors text-sm">
+            {label}
+        </a>
+    </li>
+);
+
+const ContactItem = ({ icon, text, href }: { icon: React.ReactNode, text: string, href?: string }) => (
+    <li className="flex gap-4">
+        <div className="shrink-0 w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/50">
+            {icon}
         </div>
-        <div>
-          <h4 className="text-slate-900 font-bold mb-6">Product</h4>
-          <ul className="space-y-4 text-sm text-slate-600">
-            {["Neural Engine", "Data Flow", "Security Kit", "Pricing"].map(item => (
-              <li key={item}><a className="hover:text-primary transition-colors" href={auditUrl} target="_blank" rel="noreferrer">{item}</a></li>
-            ))}
-          </ul>
+        <div className="flex flex-col justify-center">
+            {href ? (
+                <a href={href} className="text-white/60 hover:text-white transition-colors text-sm">
+                    {text}
+                </a>
+            ) : (
+                <span className="text-white/60 text-sm leading-relaxed max-w-sm">
+                    {text}
+                </span>
+            )}
         </div>
-        <div>
-          <h4 className="text-slate-900 font-bold mb-6">Company</h4>
-          <ul className="space-y-4 text-sm text-slate-600">
-            {["About Us", "Careers", "Blog", "Contact"].map(item => (
-              <li key={item}><a className="hover:text-primary transition-colors" href={auditUrl} target="_blank" rel="noreferrer">{item}</a></li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <h4 className="text-slate-900 font-bold mb-6">Legal</h4>
-          <ul className="space-y-4 text-sm text-slate-600">
-            {["Privacy Policy", "Terms of Service", "Cookie Policy"].map(item => (
-              <li key={item}><a className="hover:text-primary transition-colors" href={auditUrl} target="_blank" rel="noreferrer">{item}</a></li>
-            ))}
-          </ul>
-        </div>
-      </div>
-      <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500">
-        <p>© 2026 Bitlance AI. All neural rights reserved.</p>
-        <div className="flex items-center gap-4">
-          <span>Region: Global</span>
-          <span className="w-1 h-1 rounded-full bg-slate-300"></span>
-          <span>Status: Systems Operational</span>
-        </div>
-      </div>
-    </footer>
-  );
-}
+    </li>
+);
+
+export default Footer;

@@ -14,10 +14,10 @@
 }
 
 @utility glass {
-  background: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(7, 19, 24, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 @utility glass-dark {
@@ -57,7 +57,7 @@
 }
 
 body {
-  @apply bg-white min-h-screen text-[color:var(--color-ink)] selection:bg-primary/20;
+  @apply bg-[#030303] min-h-screen text-white selection:bg-primary/20;
 }
 
 /* ──────────────────────────────────────────────────────────────────────────

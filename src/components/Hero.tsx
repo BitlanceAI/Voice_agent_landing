@@ -9,11 +9,11 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative bg-white pt-28 pb-16 px-4">
+    <section className="relative bg-transparent pt-28 pb-16 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
           <div className="order-2 lg:order-1">
-            <h1 className="text-4xl md:text-6xl font-black leading-[1.05] tracking-[-1.5px] text-slate-900">
+            <h1 className="text-4xl md:text-6xl font-black leading-[1.05] tracking-[-1.5px] text-white">
               AI Voice Agents
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary/80 to-primary">
@@ -21,12 +21,12 @@ export default function Hero() {
               </span>
             </h1>
 
-            <p className="mt-5 text-base md:text-lg text-slate-600 leading-relaxed max-w-xl">
+            <p className="mt-5 text-base md:text-lg text-white/60 leading-relaxed max-w-xl">
               Bitlance AI answers calls instantly, qualifies leads, books appointments, and syncs
               updates to WhatsApp and your CRM—24/7.
             </p>
 
-            <ul className="mt-6 space-y-2 text-sm text-slate-700">
+            <ul className="mt-6 space-y-2 text-sm text-white/60">
               {[
                 "Natural conversations with real-time intent detection",
                 "Instant booking + automated follow-ups",
@@ -49,7 +49,7 @@ export default function Hero() {
               <button
                 type="button"
                 onClick={() => scrollToId("process")}
-                className="border border-slate-200 text-slate-900 text-sm md:text-base font-black px-7 py-3.5 rounded-xl text-center hover:bg-slate-50 transition-colors"
+                className="border border-white/10 bg-white/5 text-white text-sm md:text-base font-bold px-7 py-3.5 rounded-xl text-center hover:bg-white/10 transition-colors"
               >
                 See how it works
               </button>

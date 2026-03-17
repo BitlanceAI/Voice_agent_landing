@@ -28,9 +28,9 @@ const steps = [
 
 export default function Process() {
   return (
-    <section id="process" className="py-20 px-4 bg-white">
+    <section id="process" className="py-20 px-4 bg-transparent">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-center text-3xl md:text-5xl font-black text-slate-900 mb-16 tracking-tight">
+        <h2 className="text-center text-3xl md:text-5xl font-black text-white mb-16 tracking-tight">
           How the AI Voice Agent Works
         </h2>
         <div className="relative">
@@ -50,9 +50,9 @@ export default function Process() {
                 <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center text-white glow-primary mb-6">
                   <step.Icon aria-hidden="true" size={26} strokeWidth={2.4} />
                 </div>
-                <h4 className="text-xl font-black mb-3 text-slate-900">{step.title}</h4>
-                <p className="text-slate-600 text-sm leading-relaxed">{step.description}</p>
-                <div className="absolute top-4 right-4 text-4xl font-black text-slate-900/5">{index + 1}</div>
+                <h4 className="text-xl font-black mb-3 text-white">{step.title}</h4>
+                <p className="text-white/60 text-sm leading-relaxed">{step.description}</p>
+                <div className="absolute top-4 right-4 text-4xl font-black text-white/5">{index + 1}</div>
               </motion.div>
             ))}
           </div>

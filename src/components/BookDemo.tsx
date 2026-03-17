@@ -11,7 +11,7 @@ export default function BookDemo() {
   };
 
   return (
-    <section id="book-demo" className="py-20 px-4 bg-white">
+    <section id="book-demo" className="py-20 px-4 bg-transparent">
       <div className="max-w-7xl mx-auto">
         <div className="glass rounded-[3rem] p-10 md:p-12 relative overflow-hidden">
           <div className="absolute -top-24 -right-24 w-[420px] h-[420px] bg-primary/15 blur-[110px] rounded-full" />
@@ -22,10 +22,10 @@ export default function BookDemo() {
               <h2 className="text-primary font-bold tracking-widest uppercase text-sm mb-4">
                 Get free audit
               </h2>
-              <p className="text-4xl md:text-5xl font-black text-slate-900 mb-5 tracking-tight">
+              <p className="text-4xl md:text-5xl font-black text-white mb-5 tracking-tight">
                 Get a free AI voice audit for your business.
               </p>
-              <p className="text-slate-600 text-lg leading-relaxed mb-8">
+              <p className="text-white/60 text-lg leading-relaxed mb-8">
                 We’ll review your call flow, missed-call leakage, lead qualification steps, and
                 booking/follow-up automation opportunities—then send actionable recommendations.
               </p>
@@ -37,27 +37,27 @@ export default function BookDemo() {
                   { k: "Response", v: "<1s" },
                 ].map((item) => (
                   <div key={item.k} className="glass rounded-2xl p-5">
-                    <p className="text-xs text-slate-500 uppercase tracking-widest">{item.k}</p>
-                    <p className="text-2xl font-black text-slate-900 mt-2 tabular-nums">{item.v}</p>
+                    <p className="text-xs text-white/40 uppercase tracking-widest">{item.k}</p>
+                    <p className="text-2xl font-black text-white mt-2 tabular-nums">{item.v}</p>
                   </div>
                 ))}
               </div>
 
-              <p className="text-xs text-slate-500 mt-6 leading-relaxed">
+              <p className="text-xs text-white/40 mt-6 leading-relaxed">
                 By requesting an audit, you agree we may contact you about Bitlance AI. We don’t sell
                 your information.
               </p>
             </div>
 
-            <div className="glass rounded-3xl p-8 md:p-10 border border-slate-200">
+            <div className="glass rounded-3xl p-8 md:p-10 border border-white/10">
               <div className="flex items-center justify-between gap-4 mb-8">
-                <h3 className="text-xl font-black text-slate-900">Get Free AI Audit</h3>
+                <h3 className="text-xl font-black text-white">Get Free AI Audit</h3>
                 <span className="text-xs font-bold tracking-widest uppercase text-primary/80">
                   Free
                 </span>
               </div>
 
-              <div className="space-y-3 text-slate-700">
+              <div className="space-y-3 text-white/70">
                 {[
                   "Audit your inbound call flow and missed-call leakage",
                   "Identify where leads drop (qualification, booking, follow-up)",
@@ -83,14 +83,14 @@ export default function BookDemo() {
                 </motion.a>
                 <button
                   type="button"
-                  className="flex-1 border border-slate-200 text-slate-900 text-sm font-black px-6 py-3.5 rounded-xl text-center hover:bg-slate-50 transition-colors"
+                  className="flex-1 border border-white/10 text-white text-sm font-black px-6 py-3.5 rounded-xl text-center hover:bg-white/5 transition-colors"
                   onClick={() => scrollToId("faq")}
                 >
                   View FAQs
                 </button>
               </div>
 
-              <p className="text-xs text-slate-500 mt-4 leading-relaxed">
+              <p className="text-xs text-white/40 mt-4 leading-relaxed">
                 Clicking the button opens the audit form.
               </p>
             </div>

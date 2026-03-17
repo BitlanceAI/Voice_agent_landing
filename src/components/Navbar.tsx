@@ -14,24 +14,24 @@ export default function Navbar() {
   };
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 px-4 py-4">
+    <div className="fixed top-0 left-0 right-0 z-50 px-4 py-4 pointer-events-none">
       <motion.header
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="max-w-7xl mx-auto glass rounded-2xl px-6 py-3 flex items-center justify-between shadow-sm"
+        className="max-w-7xl mx-auto bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl px-6 py-3 flex items-center justify-between shadow-2xl pointer-events-auto"
       >
         <div className="flex items-center gap-3">
           <Image
-            src="/logo%20(1).jpg"
+            src="/logo.webp"
             alt="Bitlance AI"
             width={120}
             height={24}
-            className="h-6 w-auto"
+            className="h-6 w-auto mix-blend-lighten"
             priority
           />
-          
         </div>
+
         <nav className="hidden md:flex items-center gap-8">
           {[
             { label: "Features", id: "features" },
@@ -43,16 +43,17 @@ export default function Navbar() {
             <button
               key={item.id}
               type="button"
-              className="text-sm font-semibold text-slate-700 hover:text-primary transition-colors"
+              className="text-sm font-semibold text-white/70 hover:text-primary transition-colors cursor-pointer"
               onClick={() => scrollToId(item.id)}
             >
               {item.label}
             </button>
           ))}
         </nav>
+
         <div className="flex items-center gap-3">
           <a
-            className="hidden sm:block text-sm font-bold px-5 py-2 text-slate-700 hover:text-primary transition-colors"
+            className="hidden sm:block text-sm font-bold px-5 py-2 text-white/70 hover:text-primary transition-colors"
             href={loginUrl}
           >
             Login
