@@ -12,6 +12,7 @@ declare global {
 export default function ChatWidget() {
   const [showCta, setShowCta] = useState(false);
   const auditUrl = "https://www.bitlancetechhub.com/apply/audit";
+  const calendlyUrl = "https://calendly.com/bitlanceai/task-regarding";
 
   useEffect(() => {
     // Prevent double-initialization during Fast Refresh
@@ -23,7 +24,7 @@ export default function ChatWidget() {
     script.text = `
 // ── CONFIG ───────────────────────────────────────────────────────────────
 const WEBHOOK_URL  = 'https://bitlancetechhub.app.n8n.cloud/webhook/lead-chatbot';
-const CALENDLY_URL = 'https://calendly.com/YOUR_CALENDLY_LINK'; // ← Replace
+const CALENDLY_URL = '${calendlyUrl}';
 const SESSION_ID   = 'session_' + Math.random().toString(36).substr(2, 9);
 
 // ── STATE ────────────────────────────────────────────────────────────────
@@ -361,7 +362,7 @@ function handleLocalFallback(payload) {
         <div className="chat-cta-title">Book a Demo</div>
         <div className="chat-cta-sub">Get a quick walkthrough and free audit recommendations.</div>
         <div className="chat-cta-actions">
-          <a className="chat-cta-btn" href={auditUrl} target="_blank" rel="noreferrer">
+          <a className="chat-cta-btn" href={calendlyUrl} target="_blank" rel="noreferrer">
             Book a Demo
           </a>
           <button className="chat-cta-close" type="button" onClick={() => setShowCta(false)}>
