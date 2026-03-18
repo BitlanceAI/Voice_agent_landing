@@ -422,8 +422,8 @@ function OptionButtons({ buttons, isMulti, confirmLabel, onSingle, onMultiConfir
           {done
             ? "✓ Submitted"
             : checked.length > 0
-            ? `✅ Continue with ${checked.length} selected`
-            : confirmLabel || "✅ Continue"}
+              ? `✅ Continue with ${checked.length} selected`
+              : confirmLabel || "✅ Continue"}
         </button>
       )}
     </div>
@@ -538,7 +538,7 @@ export default function BitlanceChatbot({ isOpen: externalIsOpen, onToggle }: Bi
       }
     }, 5000);
     return () => clearTimeout(timer);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hasOpened, isOpen]);
 
   const addMsg = useCallback((msg: MessageType) => {
@@ -702,7 +702,6 @@ export default function BitlanceChatbot({ isOpen: externalIsOpen, onToggle }: Bi
 
     sendToWebhook({
       step: "service",
-      selectedServices: selectedValues,
       sessionId: sessionId.current,
       ...updatedSession,
       ...contactInfo,
