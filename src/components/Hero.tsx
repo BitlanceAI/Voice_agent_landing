@@ -64,10 +64,11 @@ export default function Hero({ onWatchOverview }: HeroProps) {
             <div className="glass rounded-[2rem] overflow-hidden border border-white/10 shadow-sm">
               <video
                 className="w-full aspect-video object-cover"
-                src="/video/WhatsApp Video 2026-03-12 at 3.59.30 PM.mp4"
+                src="/video/ai_voice_agent.mp4"
                 autoPlay
                 loop
-                muted
+                muted={false}
+                controls
                 playsInline
                 preload="auto"
               />
