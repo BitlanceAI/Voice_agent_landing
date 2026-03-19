@@ -1,98 +1,121 @@
-"use client";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Quote } from 'lucide-react';
 
-import { motion, useReducedMotion } from "framer-motion";
-import Image from "next/image";
+interface Testimonial {
+    name: string;
+    designation: string;
+    description: string;
+    profileImage: string;
+}
 
-const testimonials = [
-  {
-    quote: "Bitlance AI has completely transformed our engineering workflow. The neural predictive models are scary accurate.",
-    author: "Akshay Lakde",
-    role: "Senior Engineer",
-    image: "/testimonals/akshay_lakde.jpeg",
-  },
-  {
-    quote: "The glassmorphism UI isn't just pretty; it's incredibly functional. Our team adapted to the platform in record time.",
-    author: "Deepak Chaudhari",
-    role: "VP Operations",
-    image: "/testimonals/deepak_chaudhari.jpeg",
-  },
-  {
-    quote: "Automating our customer support with Bitlance AI saved us 40% in operational costs within the first quarter.",
-    author: "Sahil Guhane",
-    role: "Founder, Axiom Corp",
-    image: "/testimonals/sahil_guhane.jpeg",
-  },
-  {
-    quote: "The integration process was incredibly smooth. We were up and running in less than 24 hours with full neural sync.",
-    author: "Suyash Nyati",
-    role: "Product Manager",
-    image: "/testimonals/suyash_nyati.jpeg",
-  },
-  {
-    quote: "Secure, fast, and reliable. Bitlance AI is the backbone of our modern data infrastructure.",
-    author: "Tejaunsh Nyati",
-    role: "SecOps Lead",
-    image: "/testimonals/tejaunsh_nyati.jpeg",
-  },
+const testimonials: Testimonial[] = [
+    {
+        name: "Suyash Nyati",
+        designation: "Director at Nyati Technologies Pvt Ltd",
+        description: "Our front desk was overwhelmed with appointment queries. The AI voice agent now handles 80% of routine calls, allowing our staff to focus on critical tasks. Efficiency has skyrocketed.",
+        profileImage: "/testimonals/suyash_nyati.jpeg",
+    },
+    {
+        name: "Deepak Chaudhari",
+        designation: "FinTech | Business Development",
+        description: "The AI automation didn't just streamline our workflow; it understood our niche requirements perfectly. We've seen a significant increase in client engagement without expanding our team.",
+        profileImage: "/testimonals/deepak_chaudhari.jpeg",
+    },
+    {
+        name: "Tejaunsh S Nyati",
+        designation: "CEO at Nyati Technologies",
+        description: "We used to miss 20–30% calls during peak time. After adding the AI agent, every lead is answered and pre‑qualified before it reaches our sales team. It's been a game changer for our weekend closings.",
+        profileImage: "/testimonals/tejaunsh_nyati.jpeg",
+    },
+    {
+        name: "Akshay Lakade",
+        designation: "Embedded Engineer",
+        description: "I was skeptical about AI integration, but the onboarding was seamless. It feels like having a dedicated assistant who knows our technical stack inside out.",
+        profileImage: "/testimonals/akshay_lakde.jpeg",
+    },
+    {
+        name: "Sahil Guhane",
+        designation: "Cloud Engineer",
+        description: "I was skeptical about AI integration, but the onboarding was seamless. It feels like having a dedicated assistant who knows our technical stack inside out.",
+        profileImage: "/testimonals/sahil_guhane.jpeg",
+    },
 ];
 
-// Double the items for infinite scroll effect
-const doubleTestimonials = [...testimonials, ...testimonials];
+const TestimonialsSection: React.FC = () => {
+    const doubledTestimonials: Testimonial[] = [...testimonials, ...testimonials];
 
-export default function Testimonials() {
-  const reduceMotion = useReducedMotion();
+    return (
+        <section className="py-24 relative overflow-hidden bg-[#030303]">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(139,92,246,0.05),transparent_50%)] pointer-events-none" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_100%,rgba(99,102,241,0.05),transparent_50%)] pointer-events-none" />
 
-  return (
-    <section id="testimonials" className="py-20 overflow-hidden bg-transparent">
-      <div className="max-w-7xl mx-auto px-4 mb-16">
-        <h2 className="text-center text-3xl font-black text-white tracking-tight">
-          Trusted by Global Innovators
-        </h2>
-      </div>
-      
-      <div className="flex relative">
-        <motion.div 
-          className="flex gap-8 whitespace-nowrap"
-          animate={reduceMotion ? undefined : { x: [0, -1920] }} // Adjust value based on card width + gap
-          transition={
-            reduceMotion
-              ? undefined
-              : {
-                  duration: 40,
-                  repeat: Infinity,
-                  ease: "linear",
-                }
-          }
-        >
-          {doubleTestimonials.map((t, index) => (
-            <div 
-              key={`${t.author}-${index}`}
-              className="glass p-8 rounded-3xl relative w-[400px] whitespace-normal flex-shrink-0"
-            >
-              <p className="text-white/70 italic mb-8 leading-relaxed">"{t.quote}"</p>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-white/10 overflow-hidden ring-2 ring-primary/20 border border-white/10">
-                  <Image
-                    className="w-full h-full object-cover"
-                    alt={t.author}
-                    src={t.image}
-                    width={48}
-                    height={48}
-                  />
-                </div>
-                <div>
-                  <p className="font-black text-white">{t.author}</p>
-                  <p className="text-xs text-white/40 font-bold uppercase tracking-widest">{t.role}</p>
-                </div>
-              </div>
+            <div className="max-w-7xl mx-auto px-6 mb-16 text-center">
+                <motion.h2
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    viewport={{ once: true }}
+                    className="text-3xl md:text-5xl font-bold mb-6 text-white"
+                >
+                    Trusted by forward-thinking businesses
+                </motion.h2>
+                <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    viewport={{ once: true }}
+                    className="text-lg text-white/60 max-w-2xl mx-auto"
+                >
+                    See how companies are scaling their operations with our AI agents.
+                </motion.p>
             </div>
-          ))}
-        </motion.div>
-        
-        {/* Faders for smooth transitions at edges */}
-        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#030303] to-transparent z-10"></div>
-        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#030303] to-transparent z-10"></div>
-      </div>
-    </section>
-  );
-}
+
+            <div className="w-full overflow-hidden relative group">
+                <div className="absolute top-0 bottom-0 left-0 w-32 bg-gradient-to-r from-[#030303] to-transparent z-10 pointer-events-none" />
+                <div className="absolute top-0 bottom-0 right-0 w-32 bg-gradient-to-l from-[#030303] to-transparent z-10 pointer-events-none" />
+
+                <motion.div
+                    className="flex gap-6 w-max py-8 pr-6"
+                    animate={{ x: ['0%', '-50%'] }}
+                    transition={{
+                        repeat: Infinity,
+                        ease: 'linear',
+                        duration: 35,
+                    }}
+                >
+                    {doubledTestimonials.map((testimonial, index) => (
+                        <div
+                            key={index}
+                            className="w-[320px] md:w-[420px] bg-white/[0.02] border border-white/10 hover:border-indigo-500/30 hover:bg-white/[0.04] transition-colors rounded-3xl p-8 flex flex-col shrink-0 gap-6"
+                        >
+                            <Quote size={32} className="text-white/20" />
+
+                            <p className="text-white/90 leading-relaxed text-base italic flex-grow">
+                                "{testimonial.description}"
+                            </p>
+
+                            <div className="flex items-center gap-4 mt-auto">
+                                <img
+                                    src={testimonial.profileImage}
+                                    alt={testimonial.name}
+                                    className="w-12 h-12 rounded-full object-cover border border-white/20"
+                                />
+                                <div>
+                                    <h4 className="text-white font-bold text-sm tracking-wide">
+                                        {testimonial.name}
+                                    </h4>
+                                    <p className="text-indigo-400/80 text-xs mt-0.5">
+                                        {testimonial.designation}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </motion.div>
+            </div>
+        </section>
+    );
+};
+
+export default TestimonialsSection;
