@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://bitlance.ai/sitemap.xml",
+    sitemap: "https://voice.bitlancetechhub.com/sitemap.xml",
   };
 }
 

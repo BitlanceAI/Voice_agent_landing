@@ -11,7 +11,7 @@ const publicSans = Public_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://bitlance.ai"),
+  metadataBase: new URL("https://voice.bitlancetechhub.com"),
   title: {
     default: "Voice Agent for Automated Calls | Bitlance AI",
     template: "%s — Voice Agent for Automated Calls",
