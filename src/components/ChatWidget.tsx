@@ -536,7 +536,7 @@ export default function BitlanceChatbot({ isOpen: externalIsOpen, onToggle }: Bi
         setIsOpen(true);
         setTimeout(startConversation, 400);
       }
-    }, 5000);
+    }, 8000);
     return () => clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hasOpened, isOpen]);

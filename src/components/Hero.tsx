@@ -15,10 +15,10 @@ export default function Hero({ onWatchOverview }: HeroProps) {
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
           <div className="order-2 lg:order-1">
             <h1 className="text-4xl md:text-6xl font-black leading-[1.05] tracking-[-1.5px] text-white">
-              AI Voice Agents
+              AI Voice Agents for
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary/80 to-primary">
-                that book more demos
+                automated calls
               </span>
             </h1>
 
@@ -29,8 +29,9 @@ export default function Hero({ onWatchOverview }: HeroProps) {
 
             <ul className="mt-6 space-y-2 text-sm text-white/60">
               {[
-                "Natural conversations with real-time intent detection",
-                "Instant booking + automated follow-ups",
+                "Built for India: Native support for Indian accents and dialects",
+                "Instant Indian phone number integration—we handle all the setup",
+                "Instant booking + automated follow-ups via WhatsApp",
                 "99.9% uptime SLA and <1s response time",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-2">
@@ -65,7 +66,6 @@ export default function Hero({ onWatchOverview }: HeroProps) {
               <video
                 className="w-full aspect-video object-cover"
                 src="/video/ai_voice_agent.mp4"
-                autoPlay
                 loop
                 muted={false}
                 controls

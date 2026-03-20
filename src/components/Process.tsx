@@ -31,7 +31,7 @@ export default function Process() {
     <section id="process" className="py-20 px-4 bg-transparent">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-center text-3xl md:text-5xl font-black text-white mb-16 tracking-tight">
-          How the AI Voice Agent Works
+          How Our AI Voice Agent for Automated Calls Works
         </h2>
         <div className="relative">
           {/* Connector Line */}

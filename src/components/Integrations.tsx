@@ -16,7 +16,7 @@ export default function Integrations() {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl font-black text-white mb-6">Omnichannel Automation</h2>
+              <h2 className="text-4xl font-black text-white mb-6">Omnichannel Voice Automation Features</h2>
               <p className="text-white/60 text-lg mb-8">
                 Seamlessly sync every conversation with your existing tools. Automate lead intake,
                 meeting bookings, and instant notifications across all platforms.

@@ -42,8 +42,25 @@ const Footer = () => {
                         </ul>
                     </div>
 
+                    {/* Compare Links - Center Right */}
+                    <div className="lg:col-start-3 lg:justify-self-center">
+                        <h3 className="text-base font-bold mb-8 text-white">Compare</h3>
+                        <ul className="space-y-4">
+                            <li>
+                                <Link href="/compare/retell-ai" className="text-white/50 hover:text-white transition-colors text-sm">
+                                    Vs Retell AI
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/compare/vapi-ai" className="text-white/50 hover:text-white transition-colors text-sm">
+                                    Vs Vapi AI
+                                </Link>
+                            </li>
+                        </ul>
+                    </div>
+
                     {/* Contact Info - Right */}
-                    <div className="lg:col-span-2 lg:flex lg:flex-col lg:items-end">
+                    <div className="lg:col-span-1 lg:flex lg:flex-col lg:items-end">
                         <div className="w-full lg:max-w-md">
                             <h3 className="text-base font-bold mb-8 text-white">Contact</h3>
                             <ul className="space-y-6">

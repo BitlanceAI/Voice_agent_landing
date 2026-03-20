@@ -24,7 +24,7 @@ export default function Capabilities() {
     <section id="capabilities" className="py-20 px-4 bg-transparent">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-black text-white mb-4">Unlimited Potential</h2>
+          <h2 className="text-3xl md:text-4xl font-black text-white mb-4">Voice Automation Capabilities</h2>
           <p className="text-white/60 max-w-2xl mx-auto">
             The agent handles conversations in real time using advanced speech recognition and automated workflows.
           </p>

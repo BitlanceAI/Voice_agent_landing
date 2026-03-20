@@ -45,8 +45,8 @@ export default function Features() {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-end gap-6 mb-14">
           <div className="max-w-2xl">
-            <h2 className="text-primary font-bold tracking-widest uppercase text-sm mb-4">The Advantage</h2>
-            <h3 className="text-4xl md:text-5xl font-black text-white mb-6">Why Businesses Need an AI Voice Agent</h3>
+            <h2 className="text-primary font-bold tracking-widest uppercase text-sm mb-4">Voice Automation Advantage</h2>
+            <h3 className="text-4xl md:text-5xl font-black text-white mb-6">Why Businesses Need an AI Voice Agent for Automated Calls</h3>
             <p className="text-white/60 text-lg">Many businesses lose customers because calls are missed or responses are delayed. Our AI solves these challenges instantly.</p>
           </div>
         </div>
